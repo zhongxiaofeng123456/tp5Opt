@@ -10,11 +10,17 @@
 // +----------------------------------------------------------------------
 
 // 应用公共文件
-\think\Loader::addNamespace([
-    'my'  => '../application/extend/my/',
-    'org' => '../application/extend/org/',
-]);
-\think\Loader::addNamespaceAlias('model','app\index\model');
-\think\Loader::addClassMap('think\Log',LIB_PATH.'think\Log.php');
-\think\Loader::addClassMap('vendor\Md5Crypt',VENDOR_PATH.'driehle\php-crypt-md5\library\Md5Crypt\Md5Crypt.php');
-\think\Loader::addClassMap('org\util\Array',LIB_PATH.'org\util\Array.php');
+/**
+ * 加载
+ */
+
+function model1($module, $className, $parames=array())
+{
+    $dir = ROOT_PATH.'/application/'.$module;
+	if (is_dir($dir)) {
+	    if (is_file($dir.'/'.$className.'.php')) {
+	        require_once $dir.'/'.$className.'.php';dump(new $className());die;
+	        return new $className($parames);
+        }
+    }
+}

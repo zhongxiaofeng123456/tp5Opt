@@ -18,7 +18,7 @@ class Test extends Controller{
         //dump(new \app\index\controller\Index());
         //dump(D('TestModel'));die;
         $testModel = new \model\Test();
-        dump($testModel->select("select * from sys_user"));
+        dump($testModel);
 
         dump(new Log());
         $test = new \my\Test();
